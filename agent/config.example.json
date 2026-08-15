@@ -1,0 +1,12 @@
+{
+  "dashboard_url": "https://monitor.example.gov",
+  "token": "paste-the-one-time-enrollment-token-here",
+  "timeout_seconds": 5,
+  "asset_overrides": {
+    "123": {
+      "probe_port": 44818,
+      "firmware_version": "FRN 21.003",
+      "config_file": "C:/OTEIM/baselines/pump-plc-config.bin"
+    }
+  }
+}

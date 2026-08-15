@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use App\Tenancy\TenantContext;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -33,7 +34,9 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
+                'role' => $request->user()?->organizations()->whereKey(app(TenantContext::class)->id())->first()?->pivot->role,
             ],
+            'flash' => ['success' => fn () => $request->session()->get('success'), 'agent_token' => fn () => $request->session()->get('agent_token')],
         ];
     }
 }

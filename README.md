@@ -23,3 +23,5 @@ The application uses Laravel 13, PHP 8.3, PostgreSQL, Vue 3, Inertia.js, Tailwin
 No external service credentials are committed. Shodan, Censys, advisory-feed, mail, and Redis settings are supplied through environment variables.
 
 The complete product specification is in [`docs/PRODUCT_SPEC.md`](docs/PRODUCT_SPEC.md).
+
+Production guidance is in [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md), the operating runbook is in [`docs/OPERATIONS.md`](docs/OPERATIONS.md), and implemented security controls and release checks are in [`docs/SECURITY.md`](docs/SECURITY.md). The optional on-premise collector is documented in [`agent/README.md`](agent/README.md).

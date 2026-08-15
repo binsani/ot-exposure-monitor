@@ -1,0 +1,7 @@
+<script setup>
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { Head, router } from '@inertiajs/vue3';
+defineProps({ failedJobs: Array });
+const retry = (job) => router.post(route('operations.failed-jobs.retry', job.uuid), {}, { preserveScroll: true });
+</script>
+<template><Head title="Operations" /><AuthenticatedLayout><template #header><div><h1 class="text-2xl font-semibold">System operations</h1><p class="text-sm text-slate-500">Background work that needs administrator attention.</p></div></template><div class="mx-auto max-w-6xl px-4 py-8"><section class="overflow-hidden rounded-xl border bg-white shadow-sm"><div class="border-b p-5"><h2 class="font-semibold">Failed background jobs</h2><p class="mt-1 text-sm text-slate-500">Retry after correcting connectivity, credentials, quota, or mail configuration.</p></div><div v-for="job in failedJobs" :key="job.uuid" class="flex items-start justify-between gap-4 border-b p-5 last:border-0"><div><p class="font-medium">{{ job.name }}</p><p class="mt-1 text-sm text-red-700">{{ job.error }}</p><p class="mt-1 text-xs text-slate-500">{{ job.queue }} / {{ new Date(job.failed_at).toLocaleString() }}</p></div><button @click="retry(job)" class="shrink-0 rounded-lg bg-slate-900 px-3 py-2 text-xs font-semibold text-white">Retry</button></div><p v-if="!failedJobs.length" class="py-12 text-center text-sm text-emerald-700">No failed background jobs.</p></section></div></AuthenticatedLayout></template>

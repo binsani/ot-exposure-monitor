@@ -51,6 +51,12 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('alerts.index')" :active="route().current('alerts.*')">
                                     Alerts
                                 </NavLink>
+                                <NavLink v-if="$page.props.auth.role === 'admin'" :href="route('agents.index')" :active="route().current('agents.*')">
+                                    Agents
+                                </NavLink>
+                                <NavLink v-if="$page.props.auth.role === 'admin'" :href="route('operations.index')" :active="route().current('operations.*')">
+                                    Operations
+                                </NavLink>
                                 <NavLink :href="route('advisories.index')" :active="route().current('advisories.*')">
                                     Advisories
                                 </NavLink>
@@ -178,6 +184,12 @@ const showingNavigationDropdown = ref(false);
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('alerts.index')" :active="route().current('alerts.*')">
                             Alerts
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink v-if="$page.props.auth.role === 'admin'" :href="route('agents.index')" :active="route().current('agents.*')">
+                            Agents
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink v-if="$page.props.auth.role === 'admin'" :href="route('operations.index')" :active="route().current('operations.*')">
+                            Operations
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('advisories.index')" :active="route().current('advisories.*')">
                             Advisories

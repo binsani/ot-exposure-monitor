@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdvisoryController;
+use App\Http\Controllers\AgentInstallationController;
 use App\Http\Controllers\AlertController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AssetImportController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\ExposureController;
 use App\Http\Controllers\IncidentController;
 use App\Http\Controllers\IntegrityController;
 use App\Http\Controllers\PlaybookController;
+use App\Http\Controllers\OperationsController;
 use App\Http\Controllers\ProcessAreaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReadinessController;
@@ -56,6 +58,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('assets', AssetController::class);
     Route::get('/exposure', [ExposureController::class, 'index'])->name('exposure.index');
     Route::get('/alerts', [AlertController::class, 'index'])->name('alerts.index');
+    Route::get('/agents', [AgentInstallationController::class, 'index'])->name('agents.index');
+    Route::post('/agents', [AgentInstallationController::class, 'store'])->name('agents.store');
+    Route::delete('/agents/{agent}', [AgentInstallationController::class, 'destroy'])->name('agents.destroy');
+    Route::get('/operations', [OperationsController::class, 'index'])->name('operations.index');
+    Route::post('/operations/failed-jobs/{uuid}/retry', [OperationsController::class, 'retry'])->name('operations.failed-jobs.retry');
     Route::patch('/alerts/digest', [AlertController::class, 'updateDigest'])->name('alerts.digest.update');
     Route::patch('/alerts/{alert}/acknowledge', [AlertController::class, 'acknowledge'])->name('alerts.acknowledge');
     Route::patch('/alerts/{alert}/resolve', [AlertController::class, 'resolve'])->name('alerts.resolve');
