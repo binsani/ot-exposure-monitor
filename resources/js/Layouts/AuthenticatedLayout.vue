@@ -51,6 +51,12 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('advisories.index')" :active="route().current('advisories.*')">
                                     Advisories
                                 </NavLink>
+                                <NavLink :href="route('incidents.index')" :active="route().current('incidents.*')">
+                                    Incidents
+                                </NavLink>
+                                <NavLink :href="route('playbooks.index')" :active="route().current('playbooks.*') || route().current('readiness.*')">
+                                    Readiness
+                                </NavLink>
                             </div>
                         </div>
 
@@ -169,6 +175,12 @@ const showingNavigationDropdown = ref(false);
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('advisories.index')" :active="route().current('advisories.*')">
                             Advisories
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('incidents.index')" :active="route().current('incidents.*')">
+                            Incidents
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('playbooks.index')" :active="route().current('playbooks.*') || route().current('readiness.*')">
+                            Readiness
                         </ResponsiveNavLink>
                     </div>
 

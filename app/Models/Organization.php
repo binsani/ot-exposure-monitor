@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['name', 'sector', 'plan_tier', 'scan_cadence_hours'])]
+#[Fillable(['name', 'sector', 'plan_tier', 'scan_cadence_hours', 'fallback_drill_stale_months'])]
 class Organization extends Model
 {
     use HasFactory;
