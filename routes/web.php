@@ -4,6 +4,7 @@ use App\Http\Controllers\AdvisoryController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AssetImportController;
 use App\Http\Controllers\ExposureController;
+use App\Http\Controllers\IntegrityController;
 use App\Http\Controllers\ProcessAreaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
@@ -39,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('assets', AssetController::class);
     Route::get('/exposure', [ExposureController::class, 'index'])->name('exposure.index');
     Route::post('/assets/{asset}/exposure/manual', [ExposureController::class, 'storeManual'])->name('assets.exposure.manual');
+    Route::post('/assets/{asset}/integrity/manual', [IntegrityController::class, 'store'])->name('assets.integrity.manual');
+    Route::patch('/integrity-events/{event}/accept', [IntegrityController::class, 'accept'])->name('integrity-events.accept');
     Route::resource('advisories', AdvisoryController::class)->only(['index', 'create', 'store', 'show']);
     Route::patch('/advisory-matches/{match}', [AdvisoryController::class, 'updateMatch'])->name('advisory-matches.update');
     Route::get('/sites', [SiteController::class, 'index'])->name('sites.index');

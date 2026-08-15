@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 #[Fillable(['organization_id', 'site_id', 'process_area_id', 'name', 'asset_type', 'vendor', 'model', 'firmware_version', 'internal_ip', 'external_ip', 'is_internet_facing', 'exposure_override', 'data_source_type', 'last_seen_at', 'criticality', 'notes', 'raw_metadata'])]
 class Asset extends Model
@@ -41,6 +42,16 @@ class Asset extends Model
     public function integrityEvents(): HasMany
     {
         return $this->hasMany(IntegrityEvent::class);
+    }
+
+    public function baseline(): HasOne
+    {
+        return $this->hasOne(AssetBaseline::class);
+    }
+
+    public function integrityChecks(): HasMany
+    {
+        return $this->hasMany(IntegrityCheck::class);
     }
 
     public function advisoryMatches(): HasMany
