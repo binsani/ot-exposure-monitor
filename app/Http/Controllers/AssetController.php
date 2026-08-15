@@ -43,7 +43,10 @@ class AssetController extends Controller
 
     public function show(Asset $asset): Response
     {
-        return Inertia::render('Assets/Show', ['asset' => $asset->load(['site:id,name', 'processArea:id,name'])]);
+        return Inertia::render('Assets/Show', ['asset' => $asset->load([
+            'site:id,name', 'processArea:id,name',
+            'exposureScans' => fn ($query) => $query->latest('scanned_at')->limit(50),
+        ])]);
     }
 
     public function edit(Asset $asset): Response
