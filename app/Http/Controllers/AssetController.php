@@ -46,6 +46,7 @@ class AssetController extends Controller
         return Inertia::render('Assets/Show', ['asset' => $asset->load([
             'site:id,name', 'processArea:id,name',
             'exposureScans' => fn ($query) => $query->latest('scanned_at')->limit(50),
+            'advisoryMatches' => fn ($query) => $query->with('advisory')->latest(),
         ])]);
     }
 

@@ -6,6 +6,10 @@ return [
         'key' => env('SHODAN_API_KEY'),
     ],
 
+    'cisa' => [
+        'csaf_commits_url' => env('CISA_ADVISORY_FEED_URL') ?: 'https://api.github.com/repos/cisagov/CSAF/commits',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services

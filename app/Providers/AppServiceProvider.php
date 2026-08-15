@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Asset;
+use App\Observers\AssetObserver;
 use App\Tenancy\TenantContext;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
@@ -21,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Asset::observe(AssetObserver::class);
         Vite::prefetch(concurrency: 3);
     }
 }

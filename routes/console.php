@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\PollCisaAdvisories;
 use App\Jobs\ScanAssetExposure;
 use App\Models\Asset;
 use Illuminate\Foundation\Inspiring;
@@ -17,3 +18,10 @@ Artisan::command('exposure:scan-due', function () {
 })->purpose('Queue Shodan exposure checks for cloud-monitored assets');
 
 Schedule::command('exposure:scan-due')->dailyAt('02:00')->withoutOverlapping();
+
+Artisan::command('advisories:poll', function () {
+    PollCisaAdvisories::dispatch();
+    $this->info('Queued the CISA advisory feed poll.');
+})->purpose('Queue ingestion of recent CISA OT CSAF advisories');
+
+Schedule::command('advisories:poll')->dailyAt('03:00')->withoutOverlapping();

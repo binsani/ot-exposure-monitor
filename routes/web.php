@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdvisoryController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AssetImportController;
 use App\Http\Controllers\ExposureController;
@@ -38,6 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('assets', AssetController::class);
     Route::get('/exposure', [ExposureController::class, 'index'])->name('exposure.index');
     Route::post('/assets/{asset}/exposure/manual', [ExposureController::class, 'storeManual'])->name('assets.exposure.manual');
+    Route::resource('advisories', AdvisoryController::class)->only(['index', 'create', 'store', 'show']);
+    Route::patch('/advisory-matches/{match}', [AdvisoryController::class, 'updateMatch'])->name('advisory-matches.update');
     Route::get('/sites', [SiteController::class, 'index'])->name('sites.index');
     Route::post('/sites', [SiteController::class, 'store'])->name('sites.store');
     Route::delete('/sites/{site}', [SiteController::class, 'destroy'])->name('sites.destroy');

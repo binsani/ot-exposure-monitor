@@ -42,4 +42,9 @@ class Asset extends Model
     {
         return $this->hasMany(IntegrityEvent::class);
     }
+
+    public function advisoryMatches(): HasMany
+    {
+        return $this->hasMany(AssetAdvisoryMatch::class);
+    }
 }
