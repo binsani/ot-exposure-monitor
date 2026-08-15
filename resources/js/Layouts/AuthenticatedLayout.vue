@@ -48,6 +48,9 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('exposure.index')" :active="route().current('exposure.*')">
                                     Exposure
                                 </NavLink>
+                                <NavLink :href="route('alerts.index')" :active="route().current('alerts.*')">
+                                    Alerts
+                                </NavLink>
                                 <NavLink :href="route('advisories.index')" :active="route().current('advisories.*')">
                                     Advisories
                                 </NavLink>
@@ -172,6 +175,9 @@ const showingNavigationDropdown = ref(false);
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('exposure.index')" :active="route().current('exposure.*')">
                             Exposure
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('alerts.index')" :active="route().current('alerts.*')">
+                            Alerts
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('advisories.index')" :active="route().current('advisories.*')">
                             Advisories

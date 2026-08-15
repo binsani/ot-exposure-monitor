@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['name', 'sector', 'plan_tier', 'scan_cadence_hours', 'fallback_drill_stale_months'])]
+#[Fillable(['name', 'sector', 'plan_tier', 'scan_cadence_hours', 'fallback_drill_stale_months', 'advisory_digest_enabled', 'advisory_digest_day', 'last_advisory_digest_at'])]
 class Organization extends Model
 {
     use HasFactory;
@@ -21,5 +21,10 @@ class Organization extends Model
     public function sites(): HasMany
     {
         return $this->hasMany(Site::class);
+    }
+
+    protected function casts(): array
+    {
+        return ['advisory_digest_enabled' => 'boolean', 'last_advisory_digest_at' => 'datetime'];
     }
 }

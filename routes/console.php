@@ -2,6 +2,7 @@
 
 use App\Jobs\PollCisaAdvisories;
 use App\Jobs\ScanAssetExposure;
+use App\Jobs\SendDueAdvisoryDigests;
 use App\Models\Asset;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
@@ -25,3 +26,5 @@ Artisan::command('advisories:poll', function () {
 })->purpose('Queue ingestion of recent CISA OT CSAF advisories');
 
 Schedule::command('advisories:poll')->dailyAt('03:00')->withoutOverlapping();
+
+Schedule::call(fn () => SendDueAdvisoryDigests::dispatch())->dailyAt('08:00')->name('weekly-advisory-digests')->withoutOverlapping();
