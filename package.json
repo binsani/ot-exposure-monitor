@@ -24,6 +24,6 @@
         "vue": "^3.4.0"
     },
     "optionalDependencies": {
-        "@laravel/multiplex": "^0.4.1"
+        "@laravel/multiplex": "^0.4.3"
     }
 }
